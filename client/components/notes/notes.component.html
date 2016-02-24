@@ -1,0 +1,5 @@
+<h1>notes.component</h1>
+<div *ngFor="#note of notes" class="boxed">
+  <h2>{{note.title}}</h2>
+  <p *ngFor="#line of note.lines">{{line.text}}</p>
+</div>

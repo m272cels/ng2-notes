@@ -1,0 +1,7 @@
+.boxed {
+  display: inline-block;
+  width: 10em;
+  border: 1px solid black;
+  padding: 1em;
+  margin: 1em;
+}
