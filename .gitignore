@@ -5,3 +5,4 @@ node_modules
 # Angular 2.0
 client/**/*.js
 client/**/*.js.map
+typings
