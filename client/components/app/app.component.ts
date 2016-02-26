@@ -6,10 +6,7 @@ import {NoteService} from '../../services/note.service';
 
 @Component({
   selector: "my-app",
-  template: `
-    <h1>{{title}}</h1>
-    <router-outlet></router-outlet>
-  `,
+  template: "<router-outlet></router-outlet>",
   directives: [ROUTER_DIRECTIVES],
   providers: [
     ROUTER_PROVIDERS,
@@ -26,6 +23,4 @@ import {NoteService} from '../../services/note.service';
   }
 ])
 
-export class AppComponent {
-  title = "Angular Notes";
-}
+export class AppComponent {}

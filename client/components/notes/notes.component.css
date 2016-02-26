@@ -5,3 +5,12 @@
   padding: 1em;
   margin: 1em;
 }
+
+.no-edge {
+  border: none;
+  outline: none;
+}
+
+.no-back {
+  background-color: transparent;
+}

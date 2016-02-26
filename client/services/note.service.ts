@@ -48,4 +48,8 @@ export class NoteService {
       )[0]
     );
   }
+
+  createNote(newNote: Note) {
+    return Promise.resolve(1);
+  }
 }

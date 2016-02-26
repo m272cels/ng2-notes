@@ -1,5 +1,18 @@
-<h1>notes.component</h1>
+<main (click)="closeNewNote()" style="height: 100vh">
+      
+<h1>{{title}}</h1>      
+    
+<form class="boxed" (click)="openNewNote($event)">
+  <input *ngIf="newNoteForm" [(ngModel)]="newNote.title" type="text" class="no-edge" placeholder="Title">
+  <input type="text" class="no-edge" placeholder="Take a note..." [(ngModel)]="newNote.lines[0].text">
+  <button *ngIf="newNoteForm" class="no-edge no-back">DONE</button>
+</form>
+
+<div></div>
+
 <div *ngFor="#note of notes" class="boxed">
   <h2>{{note.title}}</h2>
   <p *ngFor="#line of note.lines">{{line.text}}</p>
 </div>
+
+</main>

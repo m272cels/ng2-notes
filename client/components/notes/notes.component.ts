@@ -12,7 +12,10 @@ import {NoteService} from '../../services/note.service';
 })
 
 export class NotesComponent implements OnInit {
+  title = "Angular Notes";
   notes: Note[];
+  newNote = { lines: [{text: ""}] };
+  newNoteForm = false;
 
   ngOnInit() {
     this.getNotes();
@@ -20,6 +23,18 @@ export class NotesComponent implements OnInit {
 
   getNotes() {
     this._noteService.getNotes().then(notes => this.notes = notes);
+  }
+
+  openNewNote(event: any) {
+    this.newNoteForm = true;
+    event.stopPropagation();
+  }
+
+  closeNewNote() {
+    this.newNoteForm = false;
+    if (this.newNote.title || this.newNote.lines[0].text) {
+      console.log('need to save new note');
+    }
   }
 
   constructor(
