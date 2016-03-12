@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
+import {HTTP_PROVIDERS} from 'angular2/http';
 
 import {NotesComponent} from '../notes/notes.component';
 import {NoteService} from '../../services/note.service';
@@ -10,6 +11,7 @@ import {NoteService} from '../../services/note.service';
   directives: [ROUTER_DIRECTIVES],
   providers: [
     ROUTER_PROVIDERS,
+    HTTP_PROVIDERS,
     NoteService
   ]
 })

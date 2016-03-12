@@ -7,8 +7,8 @@ import {NoteService} from '../../services/note.service';
 @Component({
     selector: 'my-notes',
     templateUrl: 'client/components/notes/notes.component.html',
-    styleUrls: ['client/components/notes/notes.component.css']
-    // directives: [NoteDetailComponent]
+    styleUrls: ['client/components/notes/notes.component.css'],
+    // directives: [NoteDetailComponent],
 })
 
 export class NotesComponent implements OnInit {
@@ -22,7 +22,10 @@ export class NotesComponent implements OnInit {
   }
 
   getNotes() {
-    this._noteService.getNotes().then(notes => this.notes = notes);
+      this._noteService.getNotes().subscribe(
+            notes => this.notes = notes,
+            error => console.log(error)
+          );
   }
 
   openNewNote(event: any) {

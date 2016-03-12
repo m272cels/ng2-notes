@@ -1,52 +1,34 @@
 import {Injectable} from 'angular2/core';
+import {Http, Response} from 'angular2/http';
+import {Observable} from 'rxjs/Observable';
 
 import {Note} from '../interfaces/note';
-
-var NOTES = [
-    {
-        id: "1a1a",
-        title: "this is note 1",
-        lines: [
-            { text: "this is line 1" },
-            { text: "this is line 2" }
-        ]
-    },
-    {
-        id: "2b2b",
-        title: "this is note 2",
-        lines: [
-            { text: "this is line 1" },
-            { text: "this is line 2" },
-            { text: "i hope this is good" }
-        ]
-    },
-    {
-        id: "3c3c",
-        lines: [{ text: "some notes don't have titles" }]
-    },
-    {
-        id: "4d4d",
-        title: "yeah buddy",
-        lines: [
-          { text: "a fourth note"},
-          { text: "this is working!", checked: true }
-        ]
-    }
-];
 
 @Injectable()
 
 export class NoteService {
+  constructor(private _http: Http) {}
+
+  private _notesUrl = 'notes';
+
   getNotes() {
-    return Promise.resolve(NOTES);
+    return this._http.get(this._notesUrl)
+        // .do(res => console.log(res))
+        .map(res => <Note[]> res.json()) //NOT res.json().data like in the guide due to how my server is responding with the data directly
+        .catch(this.handleError);
   }
 
-  getNote(id: string) {
-    return Promise.resolve(NOTES)
-      .then(notes => notes.filter(
-        note => note.id === id
-      )[0]
-    );
+  // getNote(id: string) {
+  //   return Promise.resolve(NOTES)
+  //     .then(notes => notes.filter(
+  //       note => note.id === id
+  //     )[0]
+  //   );
+  // }
+
+  private handleError(error: Response) {
+    console.error(error);
+    return Observable.throw(error.json().error || 'Server error');
   }
 
   createNote(newNote: Note) {
