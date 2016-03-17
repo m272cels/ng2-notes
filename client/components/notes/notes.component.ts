@@ -23,9 +23,9 @@ export class NotesComponent implements OnInit {
 
   getNotes() {
       this._noteService.getNotes().subscribe(
-            notes => this.notes = notes,
-            error => console.log(error)
-          );
+        notes => this.notes = notes,
+        error => console.log(error)
+      );
   }
 
   openNewNote(event: any) {
@@ -36,7 +36,13 @@ export class NotesComponent implements OnInit {
   closeNewNote() {
     this.newNoteForm = false;
     if (this.newNote.title || this.newNote.lines[0].text) {
-      console.log('need to save new note');
+      // console.log('need to save new note');
+      this._noteService.createNote(this.newNote).subscribe(
+        () => {
+          this.notes[this.notes.length] = this.newNote;
+        },
+        error => console.log(error)
+      );
     }
   }
 

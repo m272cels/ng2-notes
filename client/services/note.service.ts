@@ -1,5 +1,8 @@
 import {Injectable} from 'angular2/core';
+// for http.get
 import {Http, Response} from 'angular2/http';
+// for http.post
+import {Headers, RequestOptions} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 
 import {Note} from '../interfaces/note';
@@ -13,8 +16,7 @@ export class NoteService {
 
   getNotes() {
     return this._http.get(this._notesUrl)
-        // .do(res => console.log(res))
-        .map(res => <Note[]> res.json()) //NOT res.json().data like in the guide due to how my server is responding with the data directly
+        .map(res => <Note[]> res.json().data)
         .catch(this.handleError);
   }
 
@@ -32,6 +34,11 @@ export class NoteService {
   }
 
   createNote(newNote: Note) {
-    return Promise.resolve(1);
+    console.log('note.service createNote()');
+    let body = JSON.stringify(newNote);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this._http.post(this._notesUrl, body, options);
+    // return Promise.resolve(1);
   }
 }
