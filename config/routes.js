@@ -12,4 +12,9 @@ module.exports = (app) => {
   .post( (req, res) => {
     notes.create(req, res);
   })
+
+  app.route('/notes/:id')
+  .delete( (req, res) => {
+    notes.delete(req, res);
+  })
 }

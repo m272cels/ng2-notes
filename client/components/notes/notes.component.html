@@ -11,6 +11,7 @@
 <div></div>
 
 <div *ngFor="#note of notes" class="boxed">
+  <button (click)="deleteNote(note._id)" class="no-edge no-back">x</button>
   <h2>{{note.title}}</h2>
   <p *ngFor="#line of note.lines">{{line.text}}</p>
 </div>

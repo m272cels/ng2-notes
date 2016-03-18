@@ -39,11 +39,23 @@ export class NotesComponent implements OnInit {
       // console.log('need to save new note');
       this._noteService.createNote(this.newNote).subscribe(
         () => {
+          this.newNote = { lines: [{ text: "" }] };
           this.notes[this.notes.length] = this.newNote;
         },
         error => console.log(error)
       );
     }
+  }
+
+  deleteNote(id: string) {
+    console.log(id);
+    this._noteService.deleteNote(id).subscribe(
+      () => {
+        var index = this.notes.findIndex((val) => val._id === id);
+        this.notes.splice(index, 1);
+      },
+      error => console.log(error)
+    );
   }
 
   constructor(

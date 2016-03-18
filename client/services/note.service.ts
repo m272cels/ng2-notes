@@ -41,4 +41,9 @@ export class NoteService {
     return this._http.post(this._notesUrl, body, options);
     // return Promise.resolve(1);
   }
+
+  deleteNote(noteId: string) {
+    console.log('note.service deleteNote()');
+    return this._http.delete(this._notesUrl + '/' + noteId);
+  }
 }
